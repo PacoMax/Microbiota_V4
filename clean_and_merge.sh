@@ -2,7 +2,7 @@
 if [ "$1" == "-h" ]; then
 echo ""
 echo "  Welcome to clean_merge.sh"
-echo "  These script prepare squences to be processed by V4 single end dada2 pipeline"
+echo "  This script prepare squences to be processed by V4 single end dada2 pipeline"
 echo "  To run this program it's necesary to install these programs:"
 echo ""
 echo "          trimmomatic"
