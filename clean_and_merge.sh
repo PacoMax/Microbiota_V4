@@ -9,16 +9,16 @@ echo "          trimmomatic"
 echo "          prinseq-lite.pl"
 echo "          pear"
 echo ""
-echo "  Usage: `basename $0` [region] [type] [cpu] [ids]"
+echo "  Usage: `basename $0` [region] [type] [cpus] [ids]"
 echo ""
         echo "  region:"
-                echo  "         34      : V3-V4 (default)"
+                echo  "         34      : V3-V4"
                 echo  "         4       : V4"
                 echo  "         35      : V3-V5"
         echo "  type:"
                 echo  "         p       : paired-end"
                 echo  "         s       : single-end"
-        echo "  cpu:"
+        echo "  cpus:"
                 echo  "         interger: number of cpus"
         echo "  ids:"
                 echo  "         txt file containing the ids of the runs (file name before .fastq), in case of paired it's only necessary the file name before _1.fastq or _2.fastq"
@@ -28,7 +28,7 @@ fi
 
 region=${1?Error: No region specified. Please, ask for help (clean_merge.sh -h)}
 type=${2?Error: No type library specified. Please, ask for help (clean_merge.sh -h)}
-cpu=${3?Error: No number of cpus specified. Please, ask for help (clean_merge.sh -h)}
+cpus=${3?Error: No number of cpus specified. Please, ask for help (clean_merge.sh -h)}
 ids=${4?Error: No ids specified. Please, ask for help (clean_merge.sh -h)}
 
 mkdir -p Illumina_V4
