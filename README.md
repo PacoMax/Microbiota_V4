@@ -1,7 +1,7 @@
 # Skin_microbiome_salamander
 Scripts for analyzing skin microbiota from salamanders arround the world
 
-clean_and_merge.sh
+   ### clean_and_merge.sh
 
 This script prepare squences to be processed by V4 single end dada2 pipeline
 
@@ -36,7 +36,8 @@ Usage: clean_and_merge.sh [region] [type] [cpu] [ids]
   ids:
   
     txt file containing the ids of the runs (file name before .fastq), in case of paired it's only necessary the file name before _1.fastq or _2.fastq
+    
 
-MANIFEST_creator.sh
+   ###  MANIFEST_creator.sh
 
 This script create a MANIFEST file with the sequences from the directory Illumina_V4 created by clean_and_merge.sh
