@@ -1,5 +1,5 @@
 # Skin_microbiome_salamander
-Scripts for analyzing skin microbiota from salamanders arround the world
+Scripts for analyzing microbiotas using Illumina paired and single reads containing 16S gene V4 region.
 
    ### clean_and_merge.sh
 
