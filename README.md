@@ -1,4 +1,4 @@
-# Skin_microbiome_salamander
+# Microbiota_V4
 Scripts for analyzing microbiotas using Illumina paired and single end reads containing 16S gene V4 region.
 
    ### download_sra.sh
