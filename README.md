@@ -39,7 +39,7 @@ pear
     
     s       : single-end
   
-  cpu:
+  cpus:
     
     interger: number of cpus
   
@@ -66,7 +66,7 @@ To change that, you can edit this script with a text editor in the option --p-tr
 
       Usage: import_and_dada2.sh [MANIFEST] [cpus] [learn]"
 
-      MANIFEST:
+   MANIFEST:
       
                txt two columns tab separated file which should look like:
                
@@ -74,10 +74,10 @@ To change that, you can edit this script with a text editor in the option --p-tr
                
                {ID}  {path}/Illumina_V4/{ID}_good.fastq
                
-      cpus:
+   cpus:
       
                interger: number of cpus
 
-      learn
+   learn:
       
                interger: number of reads for the dada2 learning algorith default choose 1000000
