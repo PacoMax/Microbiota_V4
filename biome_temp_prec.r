@@ -1,4 +1,5 @@
 library(raster)
+library("rgdal")
 
 samples<-read.csv("SMS_persample.csv", header = T)
 
