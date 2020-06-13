@@ -81,3 +81,10 @@ To change that, you can edit this script with a text editor in the option --p-tr
    learn:
       
                interger: number of reads for the dada2 learning algorith default choose 1000000
+   
+   rare:
+            
+               interger: maximum rarefaction size
+               
+               
+
