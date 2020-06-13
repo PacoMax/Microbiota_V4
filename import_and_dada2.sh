@@ -38,4 +38,4 @@ export LANG=en_US.utf-8
 dates=$(date +"%d_%m_%Y")
 
 qiime tools import --type 'SampleData[SequencesWithQuality]' --input-path $MANIFEST --output-path Illumina_V4/Illumina_V4_${dates}.qza --input-format SingleEndFastqManifestPhred33V2
-qiime dada2 denoise-single --i-demultiplexed-seqs Illumina_V4/Illumina_V4_${dates}.qza --p-trunc-len 100 --p-n-threads 20 --o-table Illumina_V4/table_Illumina_V4_${dates}.qza --p-n-reads-learn $learn --p-max-ee $rare --verbose --o-repre$
+qiime dada2 denoise-single --i-demultiplexed-seqs Illumina_V4/Illumina_V4_${dates}.qza --p-trunc-len 100 --p-n-threads 20 --o-table Illumina_V4/table_Illumina_V4_${dates}.qza --p-n-reads-learn $learn --p-max-ee $rare --verbose --o-representative-sequences Illumina_V4/rep_Illumina_V4_${date}s.qza --o-denoising-stats stats_Illumina_V4_${dates}.qza
