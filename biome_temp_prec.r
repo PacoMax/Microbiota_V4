@@ -13,13 +13,18 @@ samples$tm_max<- rep("NA", nrow(samples))
 samples$tm_min<- rep("NA", nrow(samples))
 samples$pre<- rep("NA", nrow(samples))
 
+
+#Biogeocapas is an uncompress folder containing the worldclim data per month and elevation data (30s).  
+#It is necessary to create the directory and download the data from: https://www.worldclim.org
+#official is an uncompress folder downloaded from https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world
+
+
 start.time <- Sys.time()
 for(i in 1:nrow(samples)){
   tryCatch({
     dat<-data.frame(samples$long[i], samples$lat[i])
     m=samples$month[i]
     y=samples$year[i]
-    
     
     tif<-paste("Biogeocapas/wc2.1_2.5m_tmax_",y,"-",m,".tif", sep="")
     temp_a<-raster(tif)
@@ -44,11 +49,9 @@ time.taken
 
 #extract climate variables (temp max, temp min, and precipitation) per month and year 
 
+elevation<-raster("Biogeocapas/wc2.1_30s_elev.tif")
 
-teow <- readOGR(dsn = "official", layer = "wwf_terr_ecos")
-
-#readeing the data of terr_biomes
-
+#reading the elevation data
 
 dat<-data.frame(sample.id=samples$sample.id,samples$long, samples$lat)
 
@@ -56,7 +59,17 @@ dat2<-na.omit(dat)
 
 dat3<-data.frame(dat2$samples.long, dat2$samples.lat)
 
+dat2$elevation<-extract(elevation,dat3)
+
+#extract elevation data
+
+
+teow <- readOGR(dsn = "official", layer = "wwf_terr_ecos")
+
+#readeing the data of terr_biomes
+
 biomes<-extract(teow,dat3)
+
 
 dat2$BIOME<-biomes$BIOME
 dat2$ECO_NAME<-biomes$ECO_NAME
