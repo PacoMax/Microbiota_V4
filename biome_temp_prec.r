@@ -63,6 +63,19 @@ dat2$elevation<-extract(elevation,dat3)
 
 #extract elevation data
 
+names_2<-rep("NA",19)
+
+for(i in 1:19){
+  bio<-paste("Biogeocapas/wc2.1_30s_bio_",i,".tif",sep="")
+  names_2[i]<-paste("bio",i,sep="")
+  bior<-raster(bio)
+  dat2[,ncol(dat2)+1]<-extract(bior,dat3)
+}
+#reading and extracting the Bioclimatic variables
+
+names_1<-c(colnames(dat2)[1:ncol(dat2)-19],names_2)
+
+colnames(dat2)<-names_1
 
 teow <- readOGR(dsn = "official", layer = "wwf_terr_ecos")
 
@@ -76,4 +89,4 @@ dat2$ECO_NAME<-biomes$ECO_NAME
 
 samples<-merge(samples,dat2, by="sample.id", all=T)
 
-write.csv(samples,"Samples_biome_climate.csv", row.names = F, col.names = T)
+write.csv(samples,"Samples_biome_climate.csv", row.names = F)
