@@ -75,7 +75,7 @@ for(i in 1:19){
 }
 #reading and extracting the Bioclimatic variables
 
-names_1<-c(colnames(dat2)[1:ncol(dat2)-19],names_2)
+names_1<-c(colnames(dat2)[1:(ncol(dat2)-19]),names_2)
 
 colnames(dat2)<-names_1
 
