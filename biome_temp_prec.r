@@ -45,9 +45,6 @@ for(i in 1:nrow(samples)){
     
   }, error=function(e){cat("ERROR :",conditionMessage(e), "\n")})
 }
-end.time <- Sys.time()
-time.taken <- end.time - start.time
-time.taken
 
 #extract climate variables (temp max, temp min, and precipitation) per month and year 
 
@@ -75,7 +72,7 @@ for(i in 1:19){
 }
 #reading and extracting the Bioclimatic variables
 
-names_1<-c(colnames(dat2)[1:(ncol(dat2)-19]),names_2)
+names_1<-c(colnames(dat2)[1:(ncol(dat2)-19)],names_2)
 
 colnames(dat2)<-names_1
 
@@ -92,3 +89,6 @@ dat2$ECO_NAME<-biomes$ECO_NAME
 samples<-merge(samples,dat2, by="sample.id", all=T)
 
 write.csv(samples,"Samples_biome_climate.csv", row.names = F)
+end.time <- Sys.time()
+time.taken <- end.time - start.time
+time.taken
