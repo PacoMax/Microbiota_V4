@@ -2,6 +2,8 @@ library(raster)
 library("rgdal")
 
 samples<-read.csv("SMS_persample.csv", header = T)
+#Reading the sample information. The table have to be separated by "," with column names includying "sample.id", "long", and "lat".
+#where sample.id is the ID of the sample, long is the longitude and lat the latitude locations.
 
 #read the samples file
 
