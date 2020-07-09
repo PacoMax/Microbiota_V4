@@ -2,10 +2,10 @@
 if [ "$1" == "-h" ]; then
 echo ""
 echo "  Welcome to import_and_dada2.sh"
-echo "  This script import squences to be processed by dada2 pipeline"
+echo "  This script imports squences to be processed by dada2 pipeline"
 echo "  To run this program it's necesary to activate qiime2 enviroment"
 echo ""
-echo "    This pipeline cut all the reads to 100 bp length"
+echo "    This pipeline cuts all the reads to 100 bp length"
 echo "    To change that, you can edit this script with a text editor in the option --p-trunc-len (default 100bp)"
 echo ""
 echo "  Usage: `basename $0` [MANIFEST] [cpus] [learn] [rare]"
