@@ -3,7 +3,7 @@ Scripts for analyzing microbiotas using Illumina paired and single-end reads con
 
    ### download_sra.sh
    
-This script download a list of Sequence Read Archive (SRA) fastq files, available through NCBI servers.
+This script downloads a list of Sequence Read Archive (SRA) fastq files, available through NCBI servers.
 
 To run this program it's necesary to install the SRA Toolkit and create a txt file with SRA IDs called SRA.list.
 
@@ -13,7 +13,7 @@ The sequence files will be download in a directory called reads.
 
    ### clean_and_merge.sh
 
-This script prepare squences to be processed by V4 single end dada2 pipeline
+This script prepares squences to be processed by V4 single end dada2 pipeline
 
 To run this program it's necesary to install these programs:
 
@@ -50,13 +50,13 @@ pear
 
    ###  MANIFEST_creator.sh
 
-This script create a MANIFEST file with the sequences from the directory Illumina_V4 created by clean_and_merge.sh
+This script creates a MANIFEST file with the sequences from the directory Illumina_V4 created by clean_and_merge.sh
 
       Usage: MANIFEST_creator.sh
 
    ### import_and_dada2.sh
    
-This script import squences to be processed by dada2 pipeline.
+This script imports squences to be processed by dada2 pipeline.
 
 To run this program it's necesary to activate qiime2 enviroment.
 
