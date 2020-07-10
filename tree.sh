@@ -24,6 +24,6 @@ export LC_ALL=en_US.utf-8 #two lines for ASQII phyton issues
 export LANG=en_US.utf-8
 
 qiime alignment mafft --i-sequences ${dir}/rep_* --p-n-threads 12 --o-alignment ${dir}/aligned-rep_${dir}.qza
-qiime alignment mask --i-alignment ${dir}/aligned-rep_${dir}.qza --o-masked-alignment masked-aligned-rep_${dir}.qza
-qiime phylogeny fasttree --i-alignment masked-aligned-rep_${dir}.qza --p-n-threads 12 --o-tree unrooted-tree-${dir}.qza
-qiime phylogeny midpoint-root --i-tree unrooted-tree-${dir}.qza --o-rooted-tree rooted-tree-${dir}.qza
+qiime alignment mask --i-alignment ${dir}/aligned-rep_${dir}.qza --o-masked-alignment ${dir}/masked-aligned-rep_${dir}.qza
+qiime phylogeny fasttree --i-alignment ${dir}/masked-aligned-rep_${dir}.qza --p-n-threads 12 --o-tree ${dir}/unrooted-tree-${dir}.qza
+qiime phylogeny midpoint-root --i-tree ${dir}/unrooted-tree-${dir}.qza --o-rooted-tree ${dir}/rooted-tree-${dir}.qza
