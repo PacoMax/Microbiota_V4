@@ -1,5 +1,7 @@
 mkdir reads #directory where the sequences will be download. 
-mkdir ~/ncbi/public/sra #directory where the SRA files wil be download. It will be download in your home
+mkdir ~/ncbi/public/sra #directory where the SRA files wil be download. 
+#It will be download in your home. 
+#If you need more storage you should make a symbolic link of the folder in your home.
 for i in $(cat SRA.list) #SRA.list is a file containing the SRA IDs
 do
 prefetch -v $i
