@@ -87,4 +87,6 @@ To change that, you can edit this script with a text editor in the option --p-tr
                interger: maximum rarefaction size
                
                
-
+   ### merge_V24.sh
+   ### taxonomy.sh
+   ### filter_tax.sh
