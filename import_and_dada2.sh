@@ -77,7 +77,7 @@ fi
 if [ $region == 4 ]
         then
 
-        qiime cutadapt trim-single --i-demultiplexed-sequences ${folder}/${folder}_${dates}.qza --p-front GTGTGYCAGCMGCCGCGGTAA --p-error-rate 0.2 --p-cores $cpus --o-trimmed-sequences ${folder}/trimmed-seqs_${folder}_${dates}.qza --verbose p-no-discard-untrimmed
+        qiime cutadapt trim-single --i-demultiplexed-sequences ${folder}/${folder}_${dates}.qza --p-front GTGTGYCAGCMGCCGCGGTAA --p-error-rate 0.2 --p-cores $cpus --o-trimmed-sequences ${folder}/trimmed-seqs_${folder}_${dates}.qza --verbose --p-no-discard-untrimmed
 
 
         qiime dada2 denoise-single --i-demultiplexed-seqs ${folder}/trimmed-seqs_${folder}_${dates}.qza --p-trunc-len 100 --p-n-threads $cpus --o-table ${folder}/table_${folder}_${dates}.qza --p-n-reads-learn $learn --p-max-ee $rare --verbose --o-representative-sequences ${folder}/rep_${folder}_${dates}.qza --o-denoising-stats ${folder}/stats_${folder}_${dates}.qza
