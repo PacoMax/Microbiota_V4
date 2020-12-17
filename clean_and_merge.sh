@@ -31,7 +31,8 @@ type=${2?Error: No type library specified. Please, ask for help (clean_merge.sh 
 cpus=${3?Error: No number of cpus specified. Please, ask for help (clean_merge.sh -h)}
 ids=${4?Error: No ids specified. Please, ask for help (clean_merge.sh -h)}
 
-mkdir -p Illumina_V4
+
+
 export LC_ALL=en_US.utf-8
 export LANG=en_US.utf-8
 i=$(wc -l $ids | cut -d ' ' -f 1)
@@ -44,21 +45,19 @@ do
         do
                 if [ $region == 4 ] && [ $type == "s" ]
                         then
+                        mkdir -p Illumina_V4
                         echo "$sm"
                         prinseq-lite.pl -min_qual_mean 20 -trim_qual_window 2 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}* -out_good Illumina_V4/${sm}_good -out_bad null
                 fi &
                 if [ $region == 34 ] && [ $type == "s" ]
                         then
+                        mkdir -p Illumina_V34
                         echo "$sm"
-                        prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -trim_qual_window 2 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}* -out_good Illumina_V4/${sm}_good -out_bad null
-                fi &
-                if [ $region == 35 ] && [ $type == "s" ]
-                        then
-                        echo "$sm"
-                        prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -trim_right 50 -trim_qual_window 2 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}* -out_good Illumina_V4/${sm}_good -out_bad null
+                        prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -trim_qual_window 2 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}* -out_good Illumina_V34/${sm}_good -out_bad null
                 fi &
                 if [ $region == 4 ] && [ $type == "p" ]
                         then
+                        mkdir -p Illumina_V4
                         echo "$sm"
                         trimmomatic PE ${sm}_1.fastq ${sm}_2.fastq ${sm}_1_good.fastq ${sm}_1_single_good.fastq ${sm}_2_good.fastq ${sm}_2_single_good.fastq MINLEN:100 LEADING:20 TRAILING:20
                         pear -f ${sm}_1_good.fastq -r ${sm}_2_good.fastq -o $sm -v 10 -m 300 -j 1
@@ -67,19 +66,12 @@ do
                 fi &
                 if [ $region == 34 ] && [ $type == "p" ]
                         then
+                        mkdir -p Illumina_V34
                         echo "$sm"
                         trimmomatic PE ${sm}_1.fastq ${sm}_2.fastq ${sm}_1_good.fastq ${sm}_1_single_good.fastq ${sm}_2_good.fastq ${sm}_2_single_good.fastq MINLEN:100 LEADING:20 TRAILING:20
                         pear -f ${sm}_1_good.fastq -r ${sm}_2_good.fastq -o $sm -v 10 -m 300 -j 1
                         cat ${sm}.unassembled.forward.fastq ${sm}_1_single_good.fastq ${sm}.assembled.fastq > ${sm}_pre.fastq
-                        prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}_pre.fastq -out_good Illumina_V4/${sm}_good -out_bad null
-                fi &
-                if [ $region == 35 ] && [ $type == "p" ]
-                        then
-                        echo "$sm"
-                        trimmomatic PE ${sm}_1.fastq ${sm}_2.fastq ${sm}_1_good.fastq ${sm}_1_single_good.fastq ${sm}_2_good.fastq ${sm}_2_single_good.fastq MINLEN:100 LEADING:20 TRAILING:20
-                        pear -f ${sm}_1_good.fastq -r ${sm}_2_good.fastq -o $sm -v 10 -m 300 -j 1
-                        cat ${sm}.unassembled.forward.fastq ${sm}_1_single_good.fastq ${sm}.assembled.fastq > ${sm}_pre.fastq
-                        prinseq-lite.pl -min_qual_mean 20 -trim_left 100 trim_right 50 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}_pre.fastq -out_good Illumina_V4/${sm}_good -out_bad null
+                        prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}_pre.fastq -out_good Illumina_V34/${sm}_good -out_bad null
                 fi &
                 while [ $(jobs -r -p | wc -l) -gt $cpu ]
                 do
@@ -102,12 +94,7 @@ do
         if [ $region == 34 ] && [ $type == "s" ]
                 then
                 echo "$sm"
-                prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -trim_qual_window 2 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}* -out_good Illumina_V4/${sm}_good -out_bad null
-        fi &
-        if [ $region == 35 ] && [ $type == "s" ]
-                then
-                echo "$sm"
-                prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -trim_right 50 -trim_qual_window 2 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}* -out_good Illumina_V4/${sm}_good -out_bad null
+                prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -trim_qual_window 2 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}* -out_good Illumina_V34/${sm}_good -out_bad null
         fi &
         if [ $region == 4 ] && [ $type == "p" ]
                 then
@@ -123,15 +110,7 @@ do
                 trimmomatic PE ${sm}_1.fastq ${sm}_2.fastq ${sm}_1_good.fastq ${sm}_1_single_good.fastq ${sm}_2_good.fastq ${sm}_2_single_good.fastq MINLEN:100 LEADING:20 TRAILING:20
                 pear -f ${sm}_1_good.fastq -r ${sm}_2_good.fastq -o $sm -v 10 -m 300 -j 1
                 cat ${sm}.unassembled.forward.fastq ${sm}_1_single_good.fastq ${sm}.assembled.fastq > ${sm}_pre.fastq
-                prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}_pre.fastq -out_good Illumina_V4/${sm}_good -out_bad null
-        fi &
-        if [ $region == 35 ] && [ $type == "p" ]
-                then
-                echo "$sm"
-                trimmomatic PE ${sm}_1.fastq ${sm}_2.fastq ${sm}_1_good.fastq ${sm}_1_single_good.fastq ${sm}_2_good.fastq ${sm}_2_single_good.fastq MINLEN:100 LEADING:20 TRAILING:20
-                pear -f ${sm}_1_good.fastq -r ${sm}_2_good.fastq -o $sm -v 10 -m 300 -j 1
-                cat ${sm}.unassembled.forward.fastq ${sm}_1_single_good.fastq ${sm}.assembled.fastq > ${sm}_pre.fastq
-                prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -trim_right 50 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}_pre.fastq -out_good Illumina_V4/${sm}_good -out_bad null
+                prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}_pre.fastq -out_good Illumina_V34/${sm}_good -out_bad null
         fi &
         while [ $(jobs -r -p | wc -l) -gt $cpu ]
                 do
