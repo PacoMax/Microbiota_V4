@@ -18,7 +18,7 @@ echo ""
         echo "  type:"
                 echo  "         p       : paired-end"
                 echo  "         s       : single-end"
-        echo "  cpus:"
+        echo "  cpu:"
                 echo  "         interger: number of cpus"
         echo "  ids:"
                 echo  "         txt file containing the ids of the runs (file name before .fastq), in case of paired it's only necessary the file name before _1.fastq or _2.fastq"
@@ -28,7 +28,7 @@ fi
 
 region=${1?Error: No region specified. Please, ask for help (clean_merge.sh -h)}
 type=${2?Error: No type library specified. Please, ask for help (clean_merge.sh -h)}
-cpus=${3?Error: No number of cpus specified. Please, ask for help (clean_merge.sh -h)}
+cpu=${3?Error: No number of cpus specified. Please, ask for help (clean_merge.sh -h)}
 ids=${4?Error: No ids specified. Please, ask for help (clean_merge.sh -h)}
 
 
