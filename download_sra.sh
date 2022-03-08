@@ -12,7 +12,7 @@ mkdir reads #directory where the sequences will be download.
 #done
 ##
 #option 2
-for i in $(cat ../rivulares) #SRA.list is a file containing the SRA IDs
+for i in $(cat SRA.list) #SRA.list is a file containing the SRA IDs
 do
 prefetch $i
 fastq-dump --outdir reads --skip-technical -I -W --split-files $i/$i.sra
