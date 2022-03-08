@@ -10,6 +10,7 @@ To run this program it's necesary to install the SRA Toolkit and create a txt fi
       Usage: download_sra.sh
 
 The sequence files will be download in a directory called reads.
+There are two options in case you don't have enough space in your ncbi automatic created directory.
 
    ### clean_and_merge.sh
 
@@ -88,5 +89,8 @@ To change that, you can edit this script with a text editor in the option --p-tr
                
                
    ### merge_V24.sh
+   
+   This script merges imported data from sequences of different 16S regions (V2 and V4). It also can be modify in order to include more 16S regions. 
+   
    ### taxonomy.sh
    ### filter_tax.sh
