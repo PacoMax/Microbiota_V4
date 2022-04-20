@@ -12,9 +12,10 @@ echo ""
 echo "  Usage: `basename $0` [region] [type] [cpus] [ids]"
 echo ""
         echo "  region:"
+		echo  "         2      : V2 only works with single-end"
                 echo  "         34      : V3-V4"
                 echo  "         4       : V4"
-                echo  "         35      : V3-V5"
+                echo  "         35      : V3-V5 only works with paired-end" 
         echo "  type:"
                 echo  "         p       : paired-end"
                 echo  "         s       : single-end"
@@ -43,7 +44,13 @@ do
         i=$(($i-$cpu))
         for sm in ${samples[*]}
         do
-                if [ $region == 4 ] && [ $type == "s" ]
+                if [ $region == 2 ] && [ $type == "s" ]
+                        then
+                        mkdir -p Illumina_V2
+                        echo "$sm"
+                        prinseq-lite.pl -min_qual_mean 20 -trim_qual_window 2 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}* -out_good Illumina_V2/${sm}_good -out_bad null
+                fi &
+		    if [ $region == 4 ] && [ $type == "s" ]
                         then
                         mkdir -p Illumina_V4
                         echo "$sm"
@@ -73,6 +80,15 @@ do
                         cat ${sm}.unassembled.forward.fastq ${sm}_1_single_good.fastq ${sm}.assembled.fastq > ${sm}_pre.fastq
                         prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}_pre.fastq -out_good Illumina_V34/${sm}_good -out_bad null
                 fi &
+                if [ $region == 35 ] && [ $type == "p" ]
+                        then
+				mkdir -p Illumina_V35
+                        echo "$sm"
+                        trimmomatic PE ${sm}_1.fastq ${sm}_2.fastq ${sm}_1_good.fastq ${sm}_1_single_good.fastq ${sm}_2_good.fastq ${sm}_2_single_good.fastq MINLEN:100 LEADING:20 TRAILING:20
+                        pear -f ${sm}_1_good.fastq -r ${sm}_2_good.fastq -o $sm -v 10 -m 300 -j 1
+                        cat ${sm}.unassembled.forward.fastq ${sm}_1_single_good.fastq ${sm}.assembled.fastq > ${sm}_pre.fastq
+                        prinseq-lite.pl -min_qual_mean 20 -trim_left 100 trim_right 50 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}_pre.fastq -out_good Illumina_V35/${sm}_good -out_bad null
+                fi &
                 while [ $(jobs -r -p | wc -l) -gt $cpu ]
                 do
                 sleep 1
@@ -86,6 +102,11 @@ done
 samples=$(head -n $i $ids | tail -n $cpu)
 for sm in ${samples[*]}
 do
+	  if [ $region == 2 ] && [ $type == "s" ]
+                        then
+                        echo "$sm"
+                        prinseq-lite.pl -min_qual_mean 20 -trim_qual_window 2 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}* -out_good Illumina_V2/${sm}_good -out_bad null
+        fi &
         if [ $region == 4 ] && [ $type == "s" ]
                 then
                 echo "$sm"
@@ -111,6 +132,14 @@ do
                 pear -f ${sm}_1_good.fastq -r ${sm}_2_good.fastq -o $sm -v 10 -m 300 -j 1
                 cat ${sm}.unassembled.forward.fastq ${sm}_1_single_good.fastq ${sm}.assembled.fastq > ${sm}_pre.fastq
                 prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}_pre.fastq -out_good Illumina_V34/${sm}_good -out_bad null
+        fi &
+	  if [ $region == 35 ] && [ $type == "p" ]
+                then
+                echo "$sm"
+                trimmomatic PE ${sm}_1.fastq ${sm}_2.fastq ${sm}_1_good.fastq ${sm}_1_single_good.fastq ${sm}_2_good.fastq ${sm}_2_single_good.fastq MINLEN:100 LEADING:20 TRAILING:20
+                pear -f ${sm}_1_good.fastq -r ${sm}_2_good.fastq -o $sm -v 10 -m 300 -j 1
+                cat ${sm}.unassembled.forward.fastq ${sm}_1_single_good.fastq ${sm}.assembled.fastq > ${sm}_pre.fastq
+                prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -trim_right 50 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}_pre.fastq -out_good Illumina_V35/${sm}_good -out_bad null
         fi &
         while [ $(jobs -r -p | wc -l) -gt $cpu ]
                 do
