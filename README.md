@@ -14,7 +14,8 @@ There are two options in case you don't have enough space in your ncbi automatic
 
    ### clean_and_merge.sh
 
-This script prepares squences to be processed by V4 single end dada2 pipeline
+This script cleand and prepares squences to be processed by V4 single end, V34 single end, V35 single end and V2 single end dada2 pipeline.
+V2 only works with single-end while V35 with paired-end.
 
 To run this program it's necesary to install these programs:
 
@@ -27,6 +28,8 @@ pear
       Usage: clean_and_merge.sh [region] [type] [cpu] [ids]
   
   region:
+   
+    2       : V2  
 
     34      : V3-V4 (default)
 
