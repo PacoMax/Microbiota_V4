@@ -12,10 +12,11 @@ echo ""
 echo "  Usage: `basename $0` [region] [type] [cpus] [ids]"
 echo ""
         echo "  region:"
-		echo  "         2      : V2 only works with single-end"
+		echo  "         2       : V2 only single-end"
+		echo  "		3	: V3 ony paired-end"
                 echo  "         34      : V3-V4"
                 echo  "         4       : V4"
-                echo  "         35      : V3-V5 only works with paired-end" 
+                echo  "         35      : V3-V5 only paired-end"
         echo "  type:"
                 echo  "         p       : paired-end"
                 echo  "         s       : single-end"
@@ -62,6 +63,15 @@ do
                         echo "$sm"
                         prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -trim_qual_window 2 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}* -out_good Illumina_V34/${sm}_good -out_bad null
                 fi &
+		    if [ $region == 3 ] && [ $type == "p" ]
+                        then
+                        mkdir -p Illumina_V3
+				echo "$sm"
+				trimmomatic PE ${sm}_1.fastq ${sm}_2.fastq ${sm}_1_good.fastq ${sm}_1_single_good.fastq ${sm}_2_good.fastq ${sm}_2_single_good.fastq LEADING:3 TRAILING:3 SLIDINGWINDOW:4:16 MINLEN:36 AVGQUAL:25
+				pear -f ${sm}_1_good.fastq -r ${sm}_2_good.fastq -o $sm -v 10 -m 100 -j 1
+				cat ${sm}.unassembled.forward.fastq ${sm}_1_single_good.fastq ${sm}.assembled.fastq > ${sm}_pre.fastq
+				prinseq-lite.pl -min_qual_mean 20 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}_pre.fastq -out_good Illumina_V3/${sm}_good -out_bad null
+		    fi &
                 if [ $region == 4 ] && [ $type == "p" ]
                         then
                         mkdir -p Illumina_V4
@@ -117,6 +127,14 @@ do
                 echo "$sm"
                 prinseq-lite.pl -min_qual_mean 20 -trim_left 100 -trim_qual_window 2 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}* -out_good Illumina_V34/${sm}_good -out_bad null
         fi &
+	  if [ $region == 3 ] && [ $type == "p" ]
+                then
+		    echo "$sm"
+		    trimmomatic PE ${sm}_1.fastq ${sm}_2.fastq ${sm}_1_good.fastq ${sm}_1_single_good.fastq ${sm}_2_good.fastq ${sm}_2_single_good.fastq LEADING:3 TRAILING:3 SLIDINGWINDOW:4:16 MINLEN:36 AVGQUAL:25
+		    pear -f ${sm}_1_good.fastq -r ${sm}_2_good.fastq -o $sm -v 10 -m 100 -j 1
+		    cat ${sm}.unassembled.forward.fastq ${sm}_1_single_good.fastq ${sm}.assembled.fastq > ${sm}_pre.fastq
+		    prinseq-lite.pl -min_qual_mean 20 -min_len 100 -trim_qual_right 20 -trim_qual_left 20 -fastq ${sm}_pre.fastq -out_good Illumina_V3/${sm}_good -out_bad null
+		    fi &
         if [ $region == 4 ] && [ $type == "p" ]
                 then
                 echo "$sm"
