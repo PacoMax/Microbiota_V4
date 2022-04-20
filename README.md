@@ -1,5 +1,5 @@
 # Microbiota_V4
-Scripts for analyzing microbiotas using Illumina paired and single-end reads containing 16S gene V4 region, and for obtaining bioclimate and biome data.
+Scripts for analyzing microbiotas using Illumina paired and single-end reads containing 16S gene V4 region, V34, V35 and V2, and for obtaining bioclimate and biome data.
 
    ### download_sra.sh
    
