@@ -1,5 +1,5 @@
 # Microbiota_V4
-Scripts for analyzing microbiotas using Illumina paired and single-end reads containing 16S gene V4 region, V34, V35 and V2, and for obtaining bioclimate and biome data.
+Scripts for analyzing microbiotas using Illumina paired and single-end reads containing 16S gene V2, V3, V34, V35 and V4 regions, and for obtaining bioclimate and biome data.
 
    ### download_sra.sh
    
@@ -15,7 +15,7 @@ There are two options in case you don't have enough space in your ncbi automatic
    ### clean_and_merge.sh
 
 This script cleand and prepares squences to be processed by V4 single end, V34 single end, V35 single end and V2 single end dada2 pipeline.
-V2 only works with single-end while V35 with paired-end.
+V2 only works with single-end while V3 and V35 only with paired-end. It is necesary previously remove adapters
 
 To run this program it's necesary to install these programs:
 
@@ -29,7 +29,9 @@ pear
   
   region:
    
-    2       : V2  
+    2       : V2
+    
+    3       : V3
 
     34      : V3-V4 (default)
 
