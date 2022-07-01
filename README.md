@@ -95,7 +95,7 @@ To change that, you can edit this script with a text editor in the option --p-tr
                
    ### merge_V24.sh
    
-   This script merges imported data from sequences of different 16S regions (V2 and V4). It also can be modify in order to include more 16S regions.
+   This script merges imported data from sequences of different run and 16S regions (V2 and V4). It also can be modify in order to include more 16S regions.
    Before run this,it's necesary to download the updated silva tree version.
    
    ### taxonomy.sh
