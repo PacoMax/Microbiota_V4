@@ -26,7 +26,7 @@ echo "  rare:"
                echo  "         interger: maximum rarefaction size"
 echo ""
 echo "  region:"
-               echo  "         interger: 4 or 34"
+               echo  "         interger: 2,3,34,5"
 echo ""
 
 
@@ -54,25 +54,25 @@ dates=$(date +"%d_%m_%Y")
 qiime tools import --type 'SampleData[SequencesWithQuality]' --input-path $MANIFEST --output-path ${folder}/${folder}_${dates}.qza --input-format SingleEndFastqManifestPhred33V2
 
 
-if [ $region == 34 ]
-        then
-       qiime cutadapt trim-single --i-demultiplexed-sequences ${folder}/${folder}_${dates}.qza --p-front GTGTGYCAGCMGCCGCGGTAA --p-error-rate 0.2 --p-cores $cpus --o-trimmed-sequences ${folder}/trimmed-seqs_${folder}_${dates}.qza --verbose --p-discard-untrimmed
+#if [ $region == 34 ]
+ #       then
+  #     qiime cutadapt trim-single --i-demultiplexed-sequences ${folder}/${folder}_${dates}.qza --p-front GTGTGYCAGCMGCCGCGGTAA --p-error-rate 0.2 --p-cores $cpus --o-trimmed-sequences ${folder}/trimmed-seqs_${folder}_${dates}.qza --verbose --p-discard-untrimmed
 
 
         ##grepiar
-       unzip -o ${folder}/trimmed-seqs_${folder}_${dates}.qza -d ${folder}/trimmed-seqs_${folder}_${dates}
-       ls ${folder}/trimmed-seqs_${folder}_${dates}/*/data/ | grep "fastq.gz" > lista_${dates}
-       for i in $(cat lista_${dates}); do zgrep "@${i%_*_*_*_*.fastq.gz}" ${folder}/trimmed-seqs_${folder}_${dates}/*/data/${i} > tmp_head; LC_ALL=C fgrep -A3 -f tmp_head ${folder}/${i%_*_*_*_*.fastq.gz}_good.fastq | sed '/^--$/d' > ${folder}/${i%_*_*_*_*.fastq.gz}_good_2.fastq; done
+      # unzip -o ${folder}/trimmed-seqs_${folder}_${dates}.qza -d ${folder}/trimmed-seqs_${folder}_${dates}
+       #ls ${folder}/trimmed-seqs_${folder}_${dates}/*/data/ | grep "fastq.gz" > lista_${dates}
+       #for i in $(cat lista_${dates}); do zgrep "@${i%_*_*_*_*.fastq.gz}" ${folder}/trimmed-seqs_${folder}_${dates}/*/data/${i} > tmp_head; LC_ALL=C fgrep -A3 -f tmp_head ${folder}/${i%_*_*_*_*.fastq.gz}_good.fastq | sed '/^--$/d' > ${folder}/${i%_*_*_*_*.fastq.gz}_good_2.fastq; done
 
 
-       sed 's/_good.fastq/_good_2.fastq/g' $MANIFEST > MANIFEST_2_${dates}
+       #sed 's/_good.fastq/_good_2.fastq/g' $MANIFEST > MANIFEST_2_${dates}
 
-       qiime tools import --type 'SampleData[SequencesWithQuality]' --input-path MANIFEST_2_${dates} --output-path ${folder}/${folder}_${dates}_2.qza --input-format SingleEndFastqManifestPhred33V2
+       #qiime tools import --type 'SampleData[SequencesWithQuality]' --input-path MANIFEST_2_${dates} --output-path ${folder}/${folder}_${dates}_2.qza --input-format SingleEndFastqManifestPhred33V2
 
 
-        qiime dada2 denoise-single --i-demultiplexed-seqs ${folder}/${folder}_${dates}_2.qza --p-trim-left 100 --p-trunc-len 0 --p-n-threads $cpus --o-table ${folder}/table_${folder}_${dates}_2.qza --p-n-reads-learn $learn --p-max-ee $rare --verbose --o-representative-sequences ${folder}/rep_${folder}_${dates}_2.qza --o-denoising-stats ${folder}/stats_${folder}_${dates}_2.qza
+   #     qiime dada2 denoise-single --i-demultiplexed-seqs ${folder}/${folder}_${dates}_2.qza --p-trim-left 100 --p-trunc-len 0 --p-n-threads $cpus --o-table ${folder}/table_${folder}_${dates}_2.qza --p-n-reads-learn $learn --p-max-ee $rare --verbose --o-representative-sequences ${folder}/rep_${folder}_${dates}_2.qza --o-denoising-stats ${folder}/stats_${folder}_${dates}_2.qza
 
-fi
+#fi
 
 if [ $region == 4 ]
         then
