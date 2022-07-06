@@ -45,7 +45,7 @@ region=${5?Error: No region specified,Please, ask for help (./import_and_dada2.s
 export LC_ALL=en_US.utf-8 #two lines for ASQII phyton issues
 export LANG=en_US.utf-8
 
-#source activate qiime2-2019.10
+#source activate qiime2-2021.2
 
 folder="Illumina_V${region}"
 
