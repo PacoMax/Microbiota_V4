@@ -45,44 +45,18 @@ region=${5?Error: No region specified,Please, ask for help (./import_and_dada2.s
 export LC_ALL=en_US.utf-8 #two lines for ASQII phyton issues
 export LANG=en_US.utf-8
 
-#source activate qiime2-2021.2
 
 folder="Illumina_V${region}"
 
 dates=$(date +"%d_%m_%Y")
 
-qiime tools import --type 'SampleData[SequencesWithQuality]' --input-path $MANIFEST --output-path ${folder}/${folder}_${dates}.qza --input-format SingleEndFastqManifestPhred33V2
+qiime tools import --type 'SampleData[SequencesWithQuality]' --input-path $MANIFEST --output-path ${folder}_${dates}.qza --input-format SingleEndFastqManifestPhred33V2
 
 
-if [ $region == 34 ]
+if [ $region == 4 ] || [ $region == 34 ]
         then
-       #qiime cutadapt trim-single --i-demultiplexed-sequences ${folder}/${folder}_${dates}.qza --p-front GTGTGYCAGCMGCCGCGGTAA --p-error-rate 0.2 --p-cores $cpus --o-trimmed-sequences ${folder}/trimmed-seqs_${folder}_${dates}.qza --verbose --p-discard-untrimmed
-       qiime cutadapt trim-single --i-demultiplexed-sequences ${folder}/${folder}_${dates}.qza --p-front GTGTGYCAGCMGCCGCGGTAA --p-error-rate 0.2 --p-cores $cpus --o-trimmed-sequences ${folder}/trimmed-seqs_${folder}_${dates}.qza --verbose --p-no-discard-untrimmed
-
-
-        qiime dada2 denoise-single --i-demultiplexed-seqs ${folder}/trimmed-seqs_${folder}_${dates}.qza --p-trunc-len 100 --p-n-threads $cpus --o-table ${folder}/table_${folder}_${dates}.qza --p-n-reads-learn $learn --p-max-ee $rare --verbose --o-representative-sequences ${folder}/rep_${folder}_${dates}.qza --o-denoising-stats ${folder}/stats_${folder}_${dates}.qza
-
-        ##grepiar
-      # unzip -o ${folder}/trimmed-seqs_${folder}_${dates}.qza -d ${folder}/trimmed-seqs_${folder}_${dates}
-       #ls ${folder}/trimmed-seqs_${folder}_${dates}/*/data/ | grep "fastq.gz" > lista_${dates}
-       #for i in $(cat lista_${dates}); do zgrep "@${i%_*_*_*_*.fastq.gz}" ${folder}/trimmed-seqs_${folder}_${dates}/*/data/${i} > tmp_head; LC_ALL=C fgrep -A3 -f tmp_head ${folder}/${i%_*_*_*_*.fastq.gz}_good.fastq | sed '/^--$/d' > ${folder}/${i%_*_*_*_*.fastq.gz}_good_2.fastq; done
-
-
-       #sed 's/_good.fastq/_good_2.fastq/g' $MANIFEST > MANIFEST_2_${dates}
-
-       #qiime tools import --type 'SampleData[SequencesWithQuality]' --input-path MANIFEST_2_${dates} --output-path ${folder}/${folder}_${dates}_2.qza --input-format SingleEndFastqManifestPhred33V2
-
-
-   #     qiime dada2 denoise-single --i-demultiplexed-seqs ${folder}/${folder}_${dates}_2.qza --p-trim-left 100 --p-trunc-len 0 --p-n-threads $cpus --o-table ${folder}/table_${folder}_${dates}_2.qza --p-n-reads-learn $learn --p-max-ee $rare --verbose --o-representative-sequences ${folder}/rep_${folder}_${dates}_2.qza --o-denoising-stats ${folder}/stats_${folder}_${dates}_2.qza
-
-#fi
-
-if [ $region == 4 ]
-        then
-
-        qiime cutadapt trim-single --i-demultiplexed-sequences ${folder}/${folder}_${dates}.qza --p-front GTGTGYCAGCMGCCGCGGTAA --p-error-rate 0.2 --p-cores $cpus --o-trimmed-sequences ${folder}/trimmed-seqs_${folder}_${dates}.qza --verbose --p-no-discard-untrimmed
-
-
-        qiime dada2 denoise-single --i-demultiplexed-seqs ${folder}/trimmed-seqs_${folder}_${dates}.qza --p-trunc-len 100 --p-n-threads $cpus --o-table ${folder}/table_${folder}_${dates}.qza --p-n-reads-learn $learn --p-max-ee $rare --verbose --o-representative-sequences ${folder}/rep_${folder}_${dates}.qza --o-denoising-stats ${folder}/stats_${folder}_${dates}.qza
-
+        qiime cutadapt trim-single --i-demultiplexed-sequences ${folder}_${dates}.qza --p-front GTGTGYCAGCMGCCGCGGTAA --p-error-rate 0.2 --p-cores $cpus --o-trimmed-sequences trimmed-seqs_${folder}_${dates}.qza --verbose --p-no-discard-untrimmed
+        qiime dada2 denoise-single --i-demultiplexed-seqs trimmed-seqs_${folder}_${dates}.qza --p-trunc-len 100 --p-n-threads $cpus --o-table table_${folder}_${dates}.qza --p-n-reads-learn $learn --p-max-ee $rare --verbose --o-representative-sequences rep_${folder}_${dates}.qza --o-denoising-stats stats_${folder}_${dates}.qza
+else
+        qiime dada2 denoise-single --i-demultiplexed-seqs ${folder}_${dates}.qza --p-trunc-len 100 --p-n-threads $cpus --o-table table_${folder}_${dates}.qza --p-n-reads-learn $learn --p-max-ee $rare --verbose --o-representative-sequences rep_${folder}_${dates}.qza --o-denoising-stats stats_${folder}_${dates}.qza
 fi
