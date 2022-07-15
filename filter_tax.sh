@@ -32,3 +32,10 @@ qiime feature-table rarefy \
   --i-table insertion-V234-table-filt_${dates}.qza \
   --p-sampling-depth 2400 \
   --o-rarefied-table insertion-V234-table-filt_${dates}_rare.qza
+  
+  #Filter repseqs
+  qiime taxa filter-seqs \
+  --i-sequences insertion-V234-rep-seqs_${dates}.qza \
+  --i-taxonomy insertion-tax_${dates}.qza \
+  --p-exclude mitochondria,chloroplast \
+  --o-filtered-sequences insertion-V234-filt-rep-seqs_${dates}.qza
