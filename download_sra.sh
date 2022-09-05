@@ -1,4 +1,4 @@
-#It works with sratookkit.3.0.0
+#It works with sra toolkit.3.0.0
 #Installation
 #wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/3.0.0/sratoolkit.3.0.0-ubuntu64.tar.gz
 # tar -vxzf sratoolkit.3.0.0-ubuntu64.tar.gz
