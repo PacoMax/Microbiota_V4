@@ -9,9 +9,7 @@
 mkdir reads #directory where the sequences will be download.
 for i in $(cat SRA.list) #SRA.list is a file containing the SRA IDs
 #Example:
-#nano SRA.list
-#SRR0001
-#SRR0002
+#Look file SRA.list
 do
 prefetch $i -o $i.sra
 fastq-dump --outdir reads --skip-technical -I -W --split-files $i.sra
