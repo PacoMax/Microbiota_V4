@@ -98,5 +98,16 @@ To change that, you can edit this script with a text editor in the option --p-tr
    This script merges imported data from sequences of different run and 16S regions (V2 and V4). It also can be modify in order to include more 16S regions.
    Before run this,it's necesary to download the updated silva tree version.
    
+   ### Preparing_RDP_class.sh
+   
+   This scrtipt prepare RDP database for anotation using taxonomy.sh script for different 16S regions.
+   
    ### taxonomy.sh
+   
+   This script is for annotation different 16S regions using the RDP trainned database from Preparing_RDP_class.sh
+   
    ### filter_tax.sh
+   
+   Given the contamination from the host like mitochondria and chloroplast sequences, this script filtter the sequences from that source.
+   
+   
