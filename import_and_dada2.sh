@@ -2,8 +2,8 @@
 if [ "$1" == "-h" ]; then
 echo ""
 echo "  Welcome to import_and_dada2.sh"
-echo "  This script import squences to be processed by dada2 pipeline"
-echo "  To run this program it's necesary to activate qiime2 enviroment"
+echo "  This script import sequences to be processed by dada2 pipeline"
+echo "  To run this program it's necessary to activate qiime2 environment"
 echo ""
 echo "    This pipeline cut all the reads to 100 bp length"
 echo "    To change that, you can edit this script with a text editor in the option --p-trunc-len (default 100bp)"
@@ -19,14 +19,11 @@ echo "  cpus:"
                echo  "         interger: number of cpus"
 echo ""
 echo "  learn:"
-               echo  "         interger: number of reads for the dada2 learning algorith default choose 1000000"
+               echo  "         interger: number of reads for the dada2 learning algorithm default choose 1000000"
 echo ""
-echo ""
-echo "  rare:"
-               echo  "         interger: maximum rarefaction size"
 echo ""
 echo "  region:"
-               echo  "         interger: 2,3,34,5"
+               echo  "         interger: 2,3,4,34,5"
 echo ""
 
 
@@ -36,7 +33,7 @@ exit 0
 fi
 MANIFEST=${1?Error: No MANIFEST specified. Please, ask for help (./import_and_dada2.sh -h)}
 cpus=${2?Error: No number of cpus specified. Please, ask for help (./import_and_dada2.sh -h)}
-learn=${3?Error: No number of reads for the dada2 learning algorith, choose default 1000000}
+learn=${3?Error: No number of reads for the dada2 learning algorithm, choose default 1000000}
 rare=${4?Error: No number of rarefaction size set,Please, ask for help (./import_and_dada2.sh -h)}
 region=${5?Error: No region specified,Please, ask for help (./import_and_dada2.sh -h)}
 
