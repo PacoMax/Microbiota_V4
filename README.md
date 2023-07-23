@@ -5,12 +5,12 @@ Scripts for analyzing microbiotas using Illumina paired and single-end reads con
    
 This script downloads a list of Sequence Read Archive (SRA) fastq files, available through NCBI servers.
 
-To run this program it's necesary to install the SRA Toolkit and create a txt file with SRA IDs called SRA.list.
+To run this program it's necessary to install the SRA Toolkit and create a txt file with SRA IDs called SRA.list.
 
       Usage: download_sra.sh
 
-The sequence files will be download in a directory called reads.
-There are two options in case you don't have enough space in your ncbi automatic created directory.
+The sequence files will be downloaded in a directory called reads.
+There are two options in case you don't have enough space in your ncbi automatically created directory.
 
    ### clean_and_merge.sh
 
@@ -62,9 +62,9 @@ This script creates a MANIFEST file with the sequences from the directory Illumi
 
    ### import_and_dada2.sh
    
-This script imports squences to be processed by dada2 pipeline.
+This script imports sequences to be processed by dada2 pipeline.
 
-To run this program it's necesary to activate qiime2 enviroment.
+To run this program it's necessary to activate qiime2 environment.
 
 This pipeline cut all the reads to 100 bp length.
 
@@ -92,22 +92,24 @@ To change that, you can edit this script with a text editor in the option --p-tr
             
                interger: maximum rarefaction size
                
-               
+   ### run_merge_Vs.sh
+   This script merges all the data by 16S region.
+   
    ### merge_V24.sh
    
    This script merges imported data from sequences of different run and 16S regions (V2 and V4). It also can be modify in order to include more 16S regions.
-   Before run this,it's necesary to download the updated silva tree version.
+   Before running this, it's necessary to download the updated silva tree version.
    
    ### Preparing_RDP_class.sh
    
-   This scrtipt prepare RDP database for anotation using taxonomy.sh script for different 16S regions.
+   This script prepares RDP database for annotation using taxonomy.sh script for different 16S regions.
    
    ### taxonomy.sh
    
-   This script is for annotation different 16S regions using the RDP trainned database from Preparing_RDP_class.sh
+   This script is for the annotation of different 16S regions using the RDP trained database from Preparing_RDP_class.sh
    
    ### filter_tax.sh
    
-   Given the contamination from the host like mitochondria and chloroplast sequences, this script filtter the sequences from that source.
+   Given the contamination from the host like mitochondria and chloroplast sequences, this script filters the sequences from that source.
    
    
