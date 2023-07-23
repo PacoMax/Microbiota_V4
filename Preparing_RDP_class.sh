@@ -8,7 +8,7 @@ qiime tools import --type 'FeatureData[Sequence]' --input-path RDP.fa --output-p
 
 #Creating RDP_tax_id.txt
 #zgrep ">" current_Bacteria_unaligned.fa.gz | sed 's/\t/\n/g' | sed 's/\(>\w\+\)\s.*/\1/g' | sed 's/domain;//g' |sed 's/phylum;//g' | sed 's/subclass;//g' | sed 's/class;//g' | sed 's/suborder;//g' | sed 's/order;//g' | sed 's/family;//g' | sed 's/genus//g'  | tr '\n' '\t' | sed 's/Lineage=Root;rootrank;//g' | sed 's/;/; /g' | sed 's/>/\n>/g' | sed '/^$/d' | sed 's/"//g' | sed 's/>//g' | sed 's/\t/#/g' | sed 's/\s//g' | sed 's/#/\t/g' > RDP_tax_id.txt
-zgrep ">" current_Bacteria_unaligned.fa.gz | sed 's/\t/\n/g' | sed 's/"//g'| sed 's/\(>\w\+\)\s.*/\1/g' | sed 's/domain;//g' |sed 's/phylum;//g' | sed 's/;\w\+;subclass;/;/g' | sed 's/class;//g' | sed 's/;\w\+;suborder;/;/g' | sed 's/order;//g' | sed 's/family;//g' | sed 's/genus//g'  | tr '\n' '\t' | sed 's/Lineage=Root;rootrank;//g' | sed 's/;/; /g' | sed 's/>/\n>/g' | sed '/^$/d' | sed 's/>//g' | sed 's/\t/#/g' | sed 's/\s//g' | sed 's/#/\t/g' > RDP_tax_id_v2.txt
+zgrep ">" current_Bacteria_unaligned.fa.gz | sed 's/\t/\n/g' | sed 's/"//g'| sed 's/\(>\w\+\)\s.*/\1/g' | sed 's/domain;//g' |sed 's/phylum;//g' | sed 's/;\w\+;subclass;/;/g' | sed 's/class;//g' | sed 's/;\w\+;suborder;/;/g' | sed 's/order;//g' | sed 's/family;//g' | sed 's/genus//g'  | tr '\n' '\t' | sed 's/Lineage=Root;rootrank;//g' | sed 's/;/; /g' | sed 's/>/\n>/g' | sed '/^$/d' | sed 's/>//g' | sed 's/\t/#/g' | sed 's/\s//g' | sed 's/#/\t/g' > RDP_tax_id.txt
 
 
 #import IDs
