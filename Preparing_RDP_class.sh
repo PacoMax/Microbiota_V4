@@ -15,11 +15,11 @@ zgrep ">" current_Bacteria_unaligned.fa.gz | sed 's/\t/\n/g' | sed 's/"//g'| sed
 qiime tools import --type 'FeatureData[Taxonomy]' --input-format HeaderlessTSVTaxonomyFormat --input-path RDP_tax_id.txt --output-path RDP_tax_id.qza
 
 #Cut regions
-qiime feature-classifier extract-reads --i-sequences RDP.qza --p-n-jobs 15 --p-f-primer AGAGTTTGATYMTGGCTCAG --p-r-primer TGCTGCCTCCCGTAGGAGT --p-trunc-len 349 --o-reads ref-seqs-v12.qza
+qiime feature-classifier extract-reads --i-sequences RDP.qza --p-n-jobs 15 --p-f-primer AGAGTTTGATYMTGGCTCAG --p-r-primer TGCTGCCTCCCGTAGGAGT --p-trunc-len 349 --o-reads ref-seqs-v2.qza
 qiime feature-classifier extract-reads --i-sequences RDP.qza --p-n-jobs 15 --p-f-primer CCTACGGGNGGCWGCAG --p-r-primer GGACTACNVGGGTWTCTAAT --p-trunc-len 466 --o-reads ref-seqs-v34.qza
 qiime feature-classifier extract-reads --i-sequences RDP.qza --p-n-jobs 15  --p-f-primer CACGGTCGKCGGCGCCATT --p-r-primer GGACTACHVGGGTWTCTAAT --p-trunc-len 466 --o-reads ref-seqs-v4.qza
 
 #Trining the classifier
-qiime feature-classifier fit-classifier-naive-bayes --i-reference-reads ref-seqs-v12.qza --i-reference-taxonomy RDP_tax_id.qza --o-classifier ref-seqs-tain-v12.qza
+qiime feature-classifier fit-classifier-naive-bayes --i-reference-reads ref-seqs-v2.qza --i-reference-taxonomy RDP_tax_id.qza --o-classifier ref-seqs-tain-v2.qza
 qiime feature-classifier fit-classifier-naive-bayes --i-reference-reads ref-seqs-v4.qza --i-reference-taxonomy RDP_tax_id.qza --o-classifier ref-seqs-tain-v4.qza
 qiime feature-classifier fit-classifier-naive-bayes --i-reference-reads ref-seqs-v34.qza --i-reference-taxonomy RDP_tax_id.qza --o-classifier ref-seqs-tain-v34.qza
