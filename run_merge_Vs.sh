@@ -22,6 +22,8 @@ qiime feature-table merge \
 --i-tables /home/fgonzale/fgonzale/Salamander_project/PRJNA659464/reads_v2/Illumina_V4/table_Illumina_V4_06_07_2022.qza \
 --i-tables /home/fgonzale/fgonzale/Salamander_project/PRJNA731185/Illumina_V4/table_Illumina_V4_06_07_2022.qza \
 --i-tables /home/fgonzale/fgonzale/Salamander_project/PRJNA830991/Illumina_V4/table_Illumina_V4_06_07_2022.qza \
+--i-tables /home/fgonzale/fgonzale/Salamander_project/Illumina_V4/table_Illumina_V4_23_07_2023.qza \
+--i-tables /home/fgonzale/fgonzale/Salamander_project/Illumina_V4/table_Illumina_V4_23_07_2023.qza \
 --o-merged-table insertion-table_V4_${dates}.qza
 #V3,V34
 qiime feature-table merge \
@@ -54,6 +56,8 @@ qiime feature-table merge-seqs \
 --i-data /home/fgonzale/fgonzale/Salamander_project/PRJNA659464/reads_v2/Illumina_V4/rep_Illumina_V4_06_07_2022.qza \
 --i-data /home/fgonzale/fgonzale/Salamander_project/PRJNA731185/Illumina_V4/rep_Illumina_V4_06_07_2022.qza \
 --i-data /home/fgonzale/fgonzale/Salamander_project/PRJNA830991/Illumina_V4/rep_Illumina_V4_06_07_2022.qza \
+--i-data /home/fgonzale/fgonzale/Salamander_project/Illumina_V4/rep_Illumina_V4_23_07_2023.qza \
+--i-data /home/fgonzale/fgonzale/Salamander_project/Illumina_V4/rep_Illumina_V4_23_07_2023.qza \
 --o-merged-data insertion-rep-seqs_V4_${dates}.qza
 #V3,V34
 qiime feature-table merge-seqs \
