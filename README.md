@@ -14,10 +14,10 @@ There are two options in case you don't have enough space in your ncbi automatic
 
    ### clean_and_merge.sh
 
-This script cleand and prepares squences to be processed by V4 single end, V34 single end, V35 single end and V2 single end dada2 pipeline.
-V2 only works with single-end while V3 and V35 only with paired-end. It is necesary previously remove adapters
+This script cleans and prepares sequences to be processed by V4 single end, V34 single end, V35 single end, and V2 single end dada2 pipeline.
+V2 only works with single-end while V3 and V35 only with paired-end. It is necessary previously remove adapters
 
-To run this program it's necesary to install these programs:
+To run this program it's necessary to install these programs:
 
 trimmomatic
 
@@ -95,11 +95,6 @@ To change that, you can edit this script with a text editor in the option --p-tr
    ### run_merge_Vs.sh
    This script merges all the data by 16S region.
    
-   ### merge_V24.sh
-   
-   This script merges imported data from sequences of different run and 16S regions (V2 and V4). It also can be modify in order to include more 16S regions.
-   Before running this, it's necessary to download the updated silva tree version.
-   
    ### Preparing_RDP_class.sh
    
    This script prepares RDP database for annotation using taxonomy.sh script for different 16S regions.
@@ -107,6 +102,11 @@ To change that, you can edit this script with a text editor in the option --p-tr
    ### taxonomy.sh
    
    This script is for the annotation of different 16S regions using the RDP trained database from Preparing_RDP_class.sh
+
+   ### merge_V24.sh
+   
+   This script merges imported data from sequences of different run and 16S regions (V2 and V4). It also can be modified in order to include more 16S regions.
+   Before running this, it's necessary to download the updated silva tree version.
    
    ### filter_tax.sh
    
