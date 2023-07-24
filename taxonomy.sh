@@ -19,8 +19,8 @@ fi
 export LC_ALL=en_US.utf-8
 export LANG=en_US.utf-8
 
-region=${1?Error: No region specified. Please, ask for help (clean_merge.sh -h)}
-cpu=${2?Error: No number of cpus specified. Please, ask for help (clean_merge.sh -h)}
+region=${1?Error: No region specified. Please, ask for help (taxonomy.sh -h)}
+cpu=${2?Error: No number of cpus specified. Please, ask for help (taxonomy.sh -h)}
 dates=$(date +"%d_%m_%Y")
 
 qiime feature-classifier classify-sklearn --i-classifier  ref-seqs-tain-v${region}.qza --i-reads insertion-rep-seqs_V${region}_* --o-classification tax-v${region}_${dates}.qza --p-read-orientation 'same' --p-n-jobs $cpu
