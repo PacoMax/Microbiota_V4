@@ -93,7 +93,8 @@ To change that, you can edit this script with a text editor in the option --p-tr
                interger: maximum rarefaction size
                
    ### run_merge_Vs.sh
-   This script merges all the data by 16S region.
+   This script merges all the data by 16S region. 
+   You should modify it in order to work with the correct locations of your files.
    
    ### Preparing_RDP_class.sh
    
