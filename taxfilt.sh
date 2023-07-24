@@ -48,3 +48,9 @@ qiime taxa filter-seqs \
   --i-taxonomy insertion-tax_${dates}.qza \
   --p-exclude mitochondria,chloroplast \
   --o-filtered-sequences insertion-V234-filt-rep-seqs_${dates}.qza
+
+#Building the tree
+#download silva tree
+#wget https://data.qiime2.org/2022.4/common/sepp-refs-silva-128.qza 
+qiime fragment-insertion sepp --i-representative-sequences insertion-V234-table-filt_${dates}_rare.qza --p-threads 12 --o-tree insertion-tree_${dates}.qza --i-reference-database sepp-refs-silva-128.qza --o-placements insertion-placements_${dates}.qza
+
