@@ -34,7 +34,6 @@ fi
 MANIFEST=${1?Error: No MANIFEST specified. Please, ask for help (./import_and_dada2.sh -h)}
 cpus=${2?Error: No number of cpus specified. Please, ask for help (./import_and_dada2.sh -h)}
 learn=${3?Error: No number of reads for the dada2 learning algorithm, choose default 1000000}
-rare=${4?Error: No number of rarefaction size set,Please, ask for help (./import_and_dada2.sh -h)}
 region=${5?Error: No region specified,Please, ask for help (./import_and_dada2.sh -h)}
 
 
