@@ -107,8 +107,11 @@ To change that, you can edit this script with a text editor in the option --p-tr
 
    ### taxfilt.sh
    
-   This script merges imported data from sequences of different run and 16S regions (V2 and V4) and their taxonomy annotation. It also filter the data from mitochondrial and chloroplast sequences and rarefied the data at 2300.
+   This script merges imported data from sequences of different run and 16S regions (V2 and V4) and their taxonomy annotation.
+   It also filter the data from mitochondrial and chloroplast sequences and rarefied the data at 2300.
    Before running this, it's necessary to download the updated silva tree version.
-.
    
+           Usage: taxfilt.sh [cpus]" 
+           
+
    
