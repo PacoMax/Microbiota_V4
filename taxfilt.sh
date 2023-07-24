@@ -1,3 +1,22 @@
+if [ "$1" == "-h" ]; then
+echo ""
+echo "  Welcome to taxfilt.sh"
+echo "  This script merges imported data from sequences of different run and 16S regions (V2 and V4) and their taxonomy annotation.
+   It also filter the data from mitochondrial and chloroplast sequences and rarefied the data at 2300.
+   Before running this, it's necessary to download the updated silva tree version."
+echo "  To run this program it's necessary to activate qiime2 environment"
+echo ""
+echo "  Usage: `basename $0` [cpus]"
+echo "  cpus:"
+               echo  "         interger: number of cpus"
+echo ""
+
+
+
+exit 0
+fi
+cpus=${1?Error: No number of cpus specified. Please, ask for help (./import_and_dada2.sh -h)}
+
 dates=$(date +"%d_%m_%Y")
 #merge all regions
 
@@ -36,12 +55,6 @@ qiime tools import \
 
 cd ..
 
-#Rarefied the tax table
-qiime feature-table rarefy \
-  --i-table insertion-V234-table-filt_${dates}.qza \
-  --p-sampling-depth 2300 \
-  --o-rarefied-table insertion-V234-table-filt_${dates}_rare.qza
-
 
 qiime taxa filter-seqs \
   --i-sequences insertion-V234-rep-seqs_${dates}.qza \
@@ -49,8 +62,18 @@ qiime taxa filter-seqs \
   --p-exclude mitochondria,chloroplast \
   --o-filtered-sequences insertion-V234-filt-rep-seqs_${dates}.qza
 
+
+#Rarefied the tax table
+qiime feature-table rarefy \
+  --i-table insertion-V234-table-filt_${dates}.qza \
+  --p-sampling-depth 2300 \
+  --o-rarefied-table insertion-V234-table-filt_${dates}_rare.qza
+
+
+
+
 #Building the tree
 #download silva tree
 #wget https://data.qiime2.org/2022.4/common/sepp-refs-silva-128.qza 
-qiime fragment-insertion sepp --i-representative-sequences insertion-V234-table-filt_${dates}_rare.qza --p-threads 12 --o-tree insertion-tree_${dates}.qza --i-reference-database sepp-refs-silva-128.qza --o-placements insertion-placements_${dates}.qza
+qiime fragment-insertion sepp --i-representative-sequences insertion-V234-filt-rep-seqs_${dates}.qza --p-threads $cpus --o-tree insertion-tree_${dates}.qza --i-reference-database sepp-refs-silva-128.qza --o-placements insertion-placements_${dates}.qza
 
