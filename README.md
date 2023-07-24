@@ -102,14 +102,13 @@ To change that, you can edit this script with a text editor in the option --p-tr
    ### taxonomy.sh
    
    This script is for the annotation of different 16S regions using the RDP trained database from Preparing_RDP_class.sh
+   
+        Usage: import_and_dada2.sh [region] [cpus]" 
 
-   ### merge_V24.sh
+   ### taxfilt.sh
    
-   This script merges imported data from sequences of different run and 16S regions (V2 and V4). It also can be modified in order to include more 16S regions.
+   This script merges imported data from sequences of different run and 16S regions (V2 and V4) and their taxonomy annotation. It also filter the data from mitochondrial and chloroplast sequences and rarefied the data at 2300.
    Before running this, it's necessary to download the updated silva tree version.
-   
-   ### filter_tax.sh
-   
-   Given the contamination from the host like mitochondria and chloroplast sequences, this script filters the sequences from that source.
+.
    
    
