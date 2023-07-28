@@ -39,7 +39,7 @@ for(i in matr){
   
   permanova_16 <- adonis2(beta2 ~ region_16S, data = infossm2,permutations = 999)
   
-  permanova_H <- adonis2(beta2 ~ morphotype, data = infossm2,permutations = 999)
+  permanova_H <- adonis2(beta2 ~ habitat, data = infossm2,permutations = 999)
   
   ######
   
