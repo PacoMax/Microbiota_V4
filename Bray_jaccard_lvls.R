@@ -2,7 +2,8 @@ library("vegan")
 library("phyloseq")
 
 
-tabla_date_c<-read.csv("Data_supertable.csv")    
+tabla_date_c<-read.csv("Data_supertable.csv")
+#Data with separation of Cynops pyrrhogaster captive and wild.
 
 
 #
