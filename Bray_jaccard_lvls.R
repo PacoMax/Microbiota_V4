@@ -2,14 +2,7 @@ library("vegan")
 library("phyloseq")
 
 
-tabla_date<-read.csv("Super_table_27_07_22_V2_60.csv")
-library(dplyr)       
-
-
-tabla_date_c<-filter(tabla_date, Organism!="Cynops pyrrhogaster" | origin!="captive")
-
-
-
+tabla_date_c<-read.csv("Data_supertable.csv")    
 
 
 #
