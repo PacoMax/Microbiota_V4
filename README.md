@@ -104,7 +104,7 @@ To change that, you can edit this script with a text editor in the option --p-tr
    
    This script is for the annotation of different 16S regions using the RDP trained database from Preparing_RDP_class.sh
    
-        Usage: import_and_dada2.sh [region] [cpus]" 
+        Usage: import_and_dada2.sh [region] [cpus] 
 
    ### taxfilt.sh
    
@@ -112,7 +112,7 @@ To change that, you can edit this script with a text editor in the option --p-tr
    It also filter the data from mitochondrial and chloroplast sequences and rarefied the data at 2300.
    Before running this, it's necessary to download the updated silva tree version.
    
-           Usage: taxfilt.sh [cpus]" 
+           Usage: taxfilt.sh [cpus] 
            
 
    
