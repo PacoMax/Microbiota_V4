@@ -1,9 +1,6 @@
 
 tabla_date<-read.csv("Data_supertable.csv")
 
-
-tabla_date$Specie<-gsub("Pseudoeurycea sp. n. Mozotal 1","Pseudoeurycea sp.", tabla_date$Organism)
-
 ##Cores
 
 
