@@ -8,7 +8,7 @@ for(lvl in 2:6){
   
   tryCatch({
     
-    abun<-read.csv(paste0("collapse/table-L",lvl,"_25_07_2023.txt"), header = F, stringsAsFactors = FALSE,row.names=1,sep = "\t")
+    abun<-read.csv(paste0("collapse/table-L",lvl,".txt"), header = F, stringsAsFactors = FALSE,row.names=1,sep = "\t")
     abun<-abun[-1,]
     colnames(abun)<-abun[1,]
     abun<-abun[-1,]
@@ -75,7 +75,7 @@ tabla_date$Specie<-gsub("Pseudoeurycea sp. n. Mozotal 1","Pseudoeurycea sp.", ta
 
 for(lvl in 2:6){
   
-  abun<-read.csv(paste0("New_data_meta_25072023/collapse/table-L",lvl,"_25_07_2023.txt"), header = F, stringsAsFactors = FALSE,row.names=1,sep = "\t")
+  abun<-read.csv(paste0("New_data_meta_25072023/collapse/table-L",lvl,".txt"), header = F, stringsAsFactors = FALSE,row.names=1,sep = "\t")
   abun<-abun[-1,]
   colnames(abun)<-abun[1,]
   abun<-abun[-1,]
@@ -113,11 +113,11 @@ for(lvl in 2:6){
   row.names(tabla2)<-row.names(abun)
   row.names(tabla3)<-row.names(abun)
   
-  write.csv(file=paste0("Persistencia_lvl_",lvl,"_27_07_2023.csv"),tabla2)
+  write.csv(file=paste0("Persistencia_lvl_",lvl,".csv"),tabla2)
   
-  write.csv(file=paste0("Abundancia_lvl_",lvl,"_27_07_2023.csv"),tabla1)
+  write.csv(file=paste0("Abundancia_lvl_",lvl,".csv"),tabla1)
   
-  write.csv(file=paste0("Persistencia_aparicion_lvl_",lvl,"_27_07_2023.csv"),tabla3)
+  write.csv(file=paste0("Persistencia_aparicion_lvl_",lvl,".csv"),tabla3)
   
   rm(tabla1,tabla2, tabla3)
   
