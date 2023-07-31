@@ -22,9 +22,9 @@ infossm_c<-infossm[infossm$origin!="captive",]
 
 correlas<-rcorr(as.matrix(infossm_c[,c(15:37,42:45)]),type = "spearman")
 x<-correlas[["r"]]
-write.csv(file="Stats_s_29_07_2023.csv", x)
+write.csv(file="Stats_s.csv", x)
 x<-correlas[["P"]]
-write.csv(file="Stats_sp_29_07_2023.csv", x)
+write.csv(file="Stats_sp.csv", x)
 
 #Some variables are deleted (rho>0.7)
 #tm_min,bio3,bio5,bio7,bio11,bio13,bio14,bio15,bio16
@@ -80,7 +80,7 @@ lmm2.1_s<-lmer(formula = shannon_entropy ~ bio19 + pre + tm_max + elevation +
 tabla_VIF2<-check_collinearity(lmm2.1_s)
 
 
-write.csv(tabla_VIF2, "table_VIF_lmm2_29_07_2023.csv")
+write.csv(tabla_VIF2, "table_VIF_lmm2.csv")
 
 
 #Comparing the two models
@@ -93,6 +93,6 @@ r.squaredGLMM(lmm2.1_c)
 r.squaredGLMM(lmm2.1_s)
 
 #The best model based on AIC was lmm2.1_s
-save(infossm,lmm2.1_s, file = "model_data_29_07_2023.RData")
+save(infossm,lmm2.1_s, file = "model_data.RData")
 
 plot_model(lmm2.1_s, vline.color = "red")
