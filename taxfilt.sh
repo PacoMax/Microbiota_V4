@@ -6,7 +6,7 @@ echo "  This script merges imported data from sequences of different run and 16S
    Before running this, it's necessary to download the updated silva tree version."
 echo "  To run this program it's necessary to activate qiime2 environment"
 echo ""
-echo "  Usage: `basename $0` [cpus]"
+echo "  Usage: `basename $0` [V4] [V34] [V2] [Vt4] [Vt34] [Vt2] [tax4] [tax34] [tax2] [cpus]"
 echo "  cpus:"
                echo  "         interger: number of cpus"
 echo ""
@@ -15,16 +15,25 @@ echo ""
 
 exit 0
 fi
-cpus=${1?Error: No number of cpus specified. Please, ask for help (./import_and_dada2.sh -h)}
+V4=${1?Error: insertion-rep-seqs_V4 file not specified. Please, ask for help (./taxfilt.sh.sh -h)}
+V34=${2?Error: insertion-rep-seqs_V34 file not specified. Please, ask for help (./taxfilt.sh.sh -h)}
+V2=${3?Error: insertion-rep-seqs_V2 file not specified. Please, ask for help (./taxfilt.sh.sh -h)}
+Vt4=${1?Error: insertion-table_V4 file not specified. Please, ask for help (./taxfilt.sh.sh -h)}
+Vt34=${2?Error: insertion-table_V34 file not specified. Please, ask for help (./taxfilt.sh.sh -h)}
+Vt2=${3?Error: insertion-table_V2 file not specified. Please, ask for help (./taxfilt.sh.sh -h)}
+tax4=${4?Error: tax-v4 file not specified. Please, ask for help (./taxfilt.sh.sh -h)}
+tax34=${5?Error: tax-v34 file not specified. Please, ask for help (./taxfilt.sh.sh -h)}
+tax2=${5?Error: tax-v2 file not specified. Please, ask for help (./taxfilt.sh.sh -h)}
+cpus=${5?Error: No number of cpus specified. Please, ask for help (./taxfilt.sh.sh -h)}
 
 dates=$(date +"%d_%m_%Y")
 #merge all regions
 
-qiime feature-table merge-seqs --i-data insertion-rep-seqs_V4_* --i-data insertion-rep-seqs_V2_* --i-data insertion-rep-seqs_V34_* --o-merged-data insertion
+qiime feature-table merge-seqs --i-data $V4 --i-data $V2 --i-data $V34 --o-merged-data insertion
 -V234-rep-seqs_${dates}.qza
-qiime feature-table merge --i-tables insertion-table_V4_* --i-tables insertion-table_V2_* --i-tables insertion-table_V34_* --o-merged-table insertion-V234-t
+qiime feature-table merge --i-tables $Vt4 --i-tables $Vt2 --i-tables $Vt34 --o-merged-table insertion-V234-t
 able_${dates}.qza
-qiime feature-table merge-taxa --i-data tax-v2_* --i-data tax-v34_* --i-data tax-v4_* --o-merged-data insertion-tax_${dates}.qza
+qiime feature-table merge-taxa --i-data $tax4 --i-data $tax34 --i-data $tax2 --o-merged-data insertion-tax_${dates}.qza
 
 
 #filter
