@@ -8,7 +8,7 @@ for(lvl in 2:6){
   
   tryCatch({
     
-    abun<-read.csv(paste0("New_data_meta_25072023/collapse/table-L",lvl,"_25_07_2023.txt"), header = F, stringsAsFactors = FALSE,row.names=1,sep = "\t")
+    abun<-read.csv(paste0("collapse/table-L",lvl,"_25_07_2023.txt"), header = F, stringsAsFactors = FALSE,row.names=1,sep = "\t")
     abun<-abun[-1,]
     colnames(abun)<-abun[1,]
     abun<-abun[-1,]
