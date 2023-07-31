@@ -70,7 +70,7 @@ This pipeline cut all the reads to 100 bp length.
 
 To change that, you can edit this script with a text editor in the option --p-trunc-len (default 100bp).
 
-      Usage: import_and_dada2.sh [MANIFEST] [cpus] [learn]"
+      Usage: import_and_dada2.sh [MANIFEST] [cpus] [learn]
 
    MANIFEST:
       
@@ -93,6 +93,7 @@ To change that, you can edit this script with a text editor in the option --p-tr
                interger: maximum rarefaction size
                
    ### run_merge_Vs.sh
+   
    This script merges all the data by 16S region. 
    You should modify it in order to work with the correct locations of your files.
    
@@ -113,6 +114,22 @@ To change that, you can edit this script with a text editor in the option --p-tr
    Before running this, it's necessary to download the updated silva tree version.
    
            Usage: taxfilt.sh [cpus] 
-           
 
-   
+           cpus: interger: number of cpus
+
+   ### beta_alpha.sh
+
+   This script calculates the beta and alpha diversity metrics. 
+   To run this program it's necessary to activate qiime2 environment.
+   The output is a directory named core_diversity_date. It contains the diversity metrics"
+
+         Usage: beta_alpha.sh [metadata] [table] [tree] [cpus]
+
+         metadata: txt file which should look like:
+         Sample.ID  Data1  Data2  Data3
+                  
+         table:   ASV file (output of DADA2)
+      
+         tree:   qza containing the tree
+      
+         cpus: interger: number of cpus
