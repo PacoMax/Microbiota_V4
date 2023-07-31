@@ -8,9 +8,9 @@ infossm<-read.csv("Data_supertable.csv")
 infossm2<-infossm[-which(infossm$origin=="captive"),]
 
 
-w<-read.table("New_data_meta_25072023/weighted.tsv")
-uw<-read.table("New_data_meta_25072023/unweighted.tsv")
-b<-read.table("New_data_meta_25072023/braycurtis.tsv")
+w<-read.table("weighted.tsv")
+uw<-read.table("unweighted.tsv")
+b<-read.table("braycurtis.tsv")
 
 matr<-list(w,uw,b)
 names<-c("weighted", "unweighted", "braycurtis")
