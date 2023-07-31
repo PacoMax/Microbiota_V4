@@ -95,7 +95,7 @@ To change that, you can edit this script with a text editor in the option --p-tr
    ### run_merge_Vs.sh
    
    This script merges all the data by 16S region. 
-   You should modify it in order to work with the correct locations of your files.
+   It would be best if you modified it to work with your files' correct locations.
    
    ### Preparing_RDP_class.sh
    
@@ -133,3 +133,11 @@ To change that, you can edit this script with a text editor in the option --p-tr
          tree:   qza containing the tree
       
          cpus: interger: number of cpus
+
+   ## collapse_level.sh
+
+   This script uses the insertion-V234-table-filt.qza file and the insertion-tax.qza
+   and creates a directory collapse where create a list of otus files per taxonomical level.
+   You should run it in the directory where the required files are located.
+   
+      Usage: collapse_level.sh
