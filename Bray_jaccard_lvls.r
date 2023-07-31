@@ -9,7 +9,7 @@ tabla_date_c<-read.csv("Data_supertable.csv")
 #
 for(lvl in 2:7){
   
-  abun<-read.csv(paste0("collapse/table-L",lvl,"_8_8_22.txt"), header = F, stringsAsFactors = FALSE,row.names=1,sep = "\t")
+  abun<-read.csv(paste0("collapse/table-L",lvl,".txt"), header = F, stringsAsFactors = FALSE,row.names=1,sep = "\t")
   abun<-abun[-1,]
   colnames(abun)<-abun[1,]
   abun<-abun[-1,]
