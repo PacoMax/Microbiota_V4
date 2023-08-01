@@ -141,3 +141,30 @@ To change that, you can edit this script with a text editor in the option --p-tr
    You should run it in the directory where the required files are located.
    
       Usage: collapse_level.sh
+
+  ## Lefses.r
+
+  This script is for doing lefse analysis at taxonomical levels 4 and 5 with family and habitat data.
+  It uses outputs of qiime2.
+
+  ## Bray_jaccard_lvls.r
+
+  This script calculates Bray-Curtis and Jaccard distance matrixes at different taxonomical levels per salamander species.
+  The inputs are the tables from collapse_levels.sh
+
+  ## Biome_temp_prec.r
+
+  This script extracts bioclimatic data given a table with long, latitude, and ID.
+
+  ## Core_persistence_abundance.r
+
+  This script calculates the core, persistence, and abundance of bacteria at different taxonomical levels. 
+  It uses the output of collapse_levels.sh
+
+  ## Permanovas.r
+
+  This script calculates the permanovas using adonis2 function. It needs metadata and distance matrixes.
+  
+  ## LMM_alpha.r
+
+  This script calculates an LMM model and gives some statistical parameters of the model.
