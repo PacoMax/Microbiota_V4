@@ -121,7 +121,7 @@ To change that, you can edit this script with a text editor in the option --p-tr
 
    This script calculates the beta and alpha diversity metrics. 
    To run this program it's necessary to activate qiime2 environment.
-   The output is a directory named core_diversity_date. It contains the diversity metrics
+   The output is a directory named core_diversity. It contains the diversity metrics
 
          Usage: beta_alpha.sh [metadata] [table] [tree] [cpus]
 
