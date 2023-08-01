@@ -113,11 +113,11 @@ for(lvl in 2:6){
   row.names(tabla2)<-row.names(abun)
   row.names(tabla3)<-row.names(abun)
   
-  write.csv(file=paste0("Persistencia_lvl_",lvl,".csv"),tabla2)
+  write.csv(file=paste0("Persistense_lvl_",lvl,".csv"),tabla2)
   
-  write.csv(file=paste0("Abundancia_lvl_",lvl,".csv"),tabla1)
+  write.csv(file=paste0("Abundance_lvl_",lvl,".csv"),tabla1)
   
-  write.csv(file=paste0("Persistencia_aparicion_lvl_",lvl,".csv"),tabla3)
+  write.csv(file=paste0("True_persistense_lvl_",lvl,".csv"),tabla3)
   
   rm(tabla1,tabla2, tabla3)
   
