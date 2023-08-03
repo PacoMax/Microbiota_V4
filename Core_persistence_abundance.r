@@ -92,7 +92,7 @@ for(lvl in 2:6){
     namesid<- tabla_date[which(tabla_date$Specie%in%i),]$Sample.ID
     y<-abun[,namesid]
     df1<-as.data.frame(lapply(y,as.numeric))
-    w<-as.data.frame((rowSums(df1)/ncol(y))*100/2400)
+    w<-as.data.frame((rowSums(df1)/ncol(y))*100/2300) #Total 2300 rarefactions
     colnames(w)<-i
     ww<-as.data.frame(apply(df1,1,function(e){100-(sum(e%in%0)*100/length(e))}))
     colnames(ww)<-i
